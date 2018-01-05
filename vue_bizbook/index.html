@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" color="255,0,0" opacity="0.5" count="99" src="js/canvas-nest.min.js"></script>
+<div id="app" style="padding: 20px">
+    <fucom></fucom>
+    <ol class="">
+        <todo-item v-for="item in groceryList" v-bind:todo="item"  v-bind:key="item.id">
+
+        </todo-item>
+    </ol>
+    <ol class="">
+        <tdo-item v-for="item in nav" v-bind:tdo="item">
+
+        </tdo-item>
+    </ol>
+    <div class="clear">
+        <ul>
+            <li class="left" v-for="i in nav">
+                {{ i.text }}
+            </li>
+        </ul>
+    </div>
+    <div >{{ message }}</div>
+    <div >
+        <span v-bind:title="loadTime">v-bind指令绑定title 鼠标指向显示加载时间</span>
+    </div>
+    <div>
+        <p v-if="seen">条件语句 显示隐藏</p>
+    </div>
+    <div>
+        <p> {{message1}} </p>
+        <button v-on:click="reverseMes">反转消息</button>
+    </div>
+    <div>
+        <p>{{ modelData }}</p>
+        <input class="" type="text" placeholder="" v-model="modelData" >
+    </div>
+
+</div>
+<div class="mainV4_tab2 b-c-gray">
+    <p class="company_container f16 new-c2">
+        <div class="searchItem searchItemNew" style="margin-right: 55px;"
+             onclick="vipCardHref('https://item.taobao.com/item.htm?spm=a1z38n.10677092.0.0.220c0c91xgdegF&amp;id=562335453589')"
+             tyc-event-click="" tyc-event-ch="shouye.Introduction.VIP">
+            <div class="f18 font-bold sec-c2"><span>天眼查VIP尊享卡</span></div>
+            <div class="sub-title sec-c3 f14">专为商务精英定制，用户开通天眼查VIP会员</div>
+            <div class="sub-img"><img src="https://static.tianyancha.com/wap/images/home-intro-card1206.png"
+                                      width="276px" alt="天眼查VIP尊享卡"></div>
+            <div class="intro-box left-box text-center f14">
+                <div class="intro-box-title">
+                    <div class="f20 pt15 pb4">天眼查VIP尊享卡</div>
+                    <div class="">专为商务精英定制，用于开通天眼查VIP会员</div>
+                </div>
+                <div class="sec-c3">
+                    <div class="sec-c1 pt16">什么是VIP尊享卡？</div>
+                    <div class="f12 pt4">VIP尊享卡是由天眼查团队精心打造的商务礼品</div>
+                    <div class="f12 pt4">传递的是更有价值的商业调查工具，用于开通天眼查VIP</div>
+                    <div class="sec-c1 pt15">VIP尊享卡的特色？</div>
+                    <div class="f12 pt4">形式新颖，设计感十足，精致的卡套和VIP卡</div>
+                    <div class="f12 pt4 pb8">体现出满满的商务价值，抽拉的方式更加特别</div>
+                    <img src="https://static.tianyancha.com/wap/images/intro-card-1.png" alt="天眼查VIP尊享卡">
+                    <div class="sec-c1 pt3">VIP尊享卡在什么场合使用？</div>
+                    <div class="f12 pt4 "><span class="new-champ">商务人士：</span>一眼看清别人不知道的商业信息</div>
+                    <div class="f12 pt4 "><span class="new-champ">媒体记者：</span>深入报导商业内幕</div>
+                    <div class="f12 pt4"><span class="new-champ">律师/会计师/采购：</span>更加高效完成业务调查</div>
+                    <div class="button-blue-md in-block pl60 pr60 mt15">立即购买</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="searchItem searchItemNew" style="margin-right: 55px;" onclick="vipHref()" tyc-event-click=""
+             tyc-event-ch="shouye.Introduction.VIP">
+            <div class="f18 font-bold sec-c2"><span>VIP会员</span></div>
+            <div class="sub-title sec-c3 f14">一眼看清别人不知道的商业信息</div>
+            <div class="sub-img"><img src="https://static.tianyancha.com/wap/images/home-intro-vip.png" alt="VIP会员">
+            </div>
+            <div class="intro-box middle-box f14">
+                <div class="intro-box-title">
+                    <div class="f20 pt15 pb4">VIP会员</div>
+                    <div class="">一眼看清别人不知道的商业信息</div>
+                </div>
+                <div class="sec-c3"><img src="https://static.tianyancha.com/wap/images/intro-card-2.png"
+                                         alt="天眼查VIP尊享卡">
+                    <div class="button-blue-md in-block pl60 pr60 mt15">立即购买</div>
+                </div>
+            </div>
+        </div>
+        <div class="searchItem searchItemNew" onclick="businessHref()" tyc-event-click=""
+             tyc-event-ch="shouye.Introduction.VIP">
+            <div class="f18 font-bold sec-c2"><span>企业套餐</span></div>
+            <div class="sub-title sec-c3 f14">主从账号管理，解决人员流动带来的账号管理问题</div>
+            <div class="sub-img"><img src="https://static.tianyancha.com/wap/images/home-intro-business.png" alt="企业套餐">
+            </div>
+            <div class="intro-box right-box f14">
+                <div class="intro-box-title">
+                    <div class="f20 pt15 pb4">企业套餐</div>
+                    <div class="">主从账号管理，解决人员流动带来的账号管理问题</div>
+                </div>
+                <div class="sec-c3"><img src="https://static.tianyancha.com/wap/images/intro-card-3.png" alt="企业套餐">
+                    <div class="button-blue-md in-block pl60 pr60 mt15">立即购买</div>
+                </div>
+            </div>
+        </div>
+    </p>
+</div>
+
+
+<div class="experience_content">
+    <div class="inner clear">
+        <div class="experience_box">
+            <div class="experience_img">
+                <img src="http://resource.anyinfo.cn//imgs/experience1.jpg">
+            </div>
+            <div class="experience_tit">海量数据</div>
+            <div class="experience_txt">全面、快速、准确收集企业风险<br>数据，异构数据结构化处理</div>
+            <!-- <a href="/index/mass" target="_blank"><div class="experience_now">立即体验></div></a> -->
+        </div>
+        <div class="experience_box">
+            <div class="experience_img">
+                <img src="http://resource.anyinfo.cn//imgs/experience2.jpg">
+            </div>
+            <div class="experience_tit">深度挖掘</div>
+            <div class="experience_txt">工商、关联、涉诉等<br>揭示产业链多重风险</div>
+            <!--<a href="/index/depth" target="_blank"><div class="experience_now">立即体验></div></a>-->
+        </div>
+        <div class="experience_box">
+            <div class="experience_img">
+                <img src="http://resource.anyinfo.cn//imgs/experience3.jpg">
+            </div>
+            <div class="experience_tit">即时查询</div>
+            <div class="experience_txt">千万家企业信息<br>随时随地搜索查询</div>
+            <!--<a data-toggle="modal" data-target="#timely_query_model"><div class="experience_now">立即体验></div></a>-->
+        </div>
+        <div class="experience_box">
+            <div class="experience_img">
+                <img src="http://resource.anyinfo.cn//imgs/experience4.jpg">
+            </div>
+            <div class="experience_tit">实时监控</div>
+            <div class="experience_txt">动态监测企业异动情况<br>邮件、微信主动推送预警消息</div>
+            <!--<a href="/index/real" target="_blank"><div class="experience_now">立即体验></div></a>-->
+        </div>
+    </div>
+</div>
+
+
+
+<style lang="scss" scope>
+    /*@import 'css/common';*/
+    ul li{
+        list-style: none;
+    }
+</style>
+<script src="lib/vue.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript">
+    // Vue.component('todo-list',{
+    //     template : "<li> tedt </li>"
+    // })
+    // new Vue({
+    //     el:"#app2",
+    // })
+</script>
+
+</body>
+</html>
