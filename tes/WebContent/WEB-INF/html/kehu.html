@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"></link>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/login-soft.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div class="index_header">
+        <div class="inner">
+            <div class="logo"><a href="/index"><img src="../jpg/logo.png"></a></div>
+            <div class="loginOreg">
+                <span><a href="/auth/login">登录</a></span>
+                <span>|</span>
+                <span><a href="/regist">注册</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="special_search_bottom_box">
+        <div class="inner clear">
+            <div class="special_search_bottom">
+                <a href="#" onclick="login1()">
+                    <div class="special_search_icon">
+                        <span class="icon icon_1"></span>
+                        我的信息
+                    </div>
+                </a>
+            </div>
+            <div class="special_search_bottom">
+                <a href="#" onclick="login2()">
+                    <div class="special_search_icon">
+                        <span class="icon icon_2"></span>
+                        我的团队
+                    </div>
+                </a>
+            </div>
+            <div class="special_search_bottom">
+                <a href="#" onclick="login3()">
+                    <div class="special_search_icon">
+                        <span class="icon icon_3"></span>
+                        资金管理
+                    </div>
+                </a>
+            </div>
+            <div class="special_search_bottom">
+                <a href="xiaoxi.html">
+                    <div class="special_search_icon">
+                        <span class="icon icon_4"></span>
+                        内容1
+                    </div>
+                </a>
+            </div>
+            <div class="special_search_bottom">
+                <a href="xiaoxi.html">
+                    <div class="special_search_icon">
+                        <span class="icon icon_5"></span>
+                        内容1
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="div3" class="container">
+    <div class="control-group">
+        <h2>我的信息</h2>
+        <p></p>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>客户名</th>
+                <th>星级</th>
+                <th>已提现</th>
+                <th>提现时间</th>
+                <th>余额</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>13017533329</td>
+                <td><h5>★★★★</h5></td>
+                <td>500</td>
+                <td>2017/5/20</td>
+                <td>1000</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+<div id="div" class="container">
+    <h2>我的团队</h2>
+    <p></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>证件号</th>
+            <th>星级</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>13017533329</td>
+            <td>王志豪</td>
+            <td><h5>★★★★</h5></td>
+
+        </tr>
+        <tr>
+            <td>13017533329</td>
+            <td>王志豪</td>
+            <td><h5>★★★★</h5></td>
+
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<div id="div1" class="container">
+    <h2>资金管理</h2>
+    <p></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>星级</th>
+            <th>已提现</th>
+            <th>提现时间</th>
+            <th>余额</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><h5>★★★★</h5></td>
+            <td>500</td>
+            <td>2017/5/20</td>
+
+            <td>1000</td>
+            <td>
+                <button onclick="login4()">我要提现</button>
+            </td>
+        </tr>
+        <tr>
+            <td><h5>★★★★</h5></td>
+            <td>500</td>
+            <td>2017/4/22</td>
+
+            <td>1000</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#div1").hide();
+        $("#div").hide();
+        $("#div3").hide();
+    });
+</script>
+<script>
+    function login1() {
+        $("#div1").hide();
+        $("#div").hide();
+        $("#div3").show();
+    }
+
+    function login2() {
+        $("#div1").hide();
+        $("#div3").hide();
+        $("#div").show();
+    }
+
+    function login3() {
+        $("#div").hide();
+        $("#div3").hide();
+        $("#div1").show();
+    }
+
+    function login4() {
+        window.location.replace("kehutixian.html");
+    }
+</script>
+</html>
