@@ -8,7 +8,16 @@
 </head>
 <body>
 <script type="text/javascript" color="255,0,0" opacity="0.5" count="99" src="js/canvas-nest.min.js"></script>
-<div id="app" style="padding: 20px">
+<div id="watch-example">
+	
+</div>
+<div id="vmApp" style="width: 1080px;margin: 0 auto;">
+    <div >{{a}}</div>
+    <div class="static" v-bind:class = "{active:isActive,'text-danger':hasError }">v-bind class   </div>
+</div>
+
+
+<div id="app" style="padding: 20px;width: 1080px;margin: 0 auto;" >
     <fucom></fucom>
     <ol class="">
         <todo-item v-for="item in groceryList" v-bind:todo="item"  v-bind:key="item.id">
@@ -16,7 +25,7 @@
         </todo-item>
     </ol>
     <ol class="">
-        <tdo-item v-for="item in nav" v-bind:tdo="item">
+        <tdo-item v-for="item in nav" :tdo="item">
 
         </tdo-item>
     </ol>
@@ -27,7 +36,7 @@
             </li>
         </ul>
     </div>
-    <div >{{ message }}</div>
+    <div v-bind:style="styleObject">{{ message.a }}</div>
     <div >
         <span v-bind:title="loadTime">v-bind指令绑定title 鼠标指向显示加载时间</span>
     </div>
@@ -42,114 +51,55 @@
         <p>{{ modelData }}</p>
         <input class="" type="text" placeholder="" v-model="modelData" >
     </div>
-
+	<div>
+		<a @:click.stop="doThis">.stop阻止事件继续传播</a>
+		<form @:click.submit.prevent="onSubmit">.prevent 提交事件不再重载页面</form>
+		<a @:click.stop.prevent="doThat">.stop.prevent修饰符可以串联</a>
+		<form @:click.submit.prevent>只有修饰符</form>
+		<div @:click.capture="doThis">...添加事件监听器时使用事件捕获模式,即元素自身触发的事件先在此处处理,然后才交由内部元素进行处理</div>
+		<div @:click.self="doThat">click.self 只当在event.target是当前元素自身触发处理函数 即事件不是由内部元素触发的</div>
+		<div>@:click.prevent.self会阻止所有点击 @:click.self.prevent只会阻止对元素自身的点击          @:click.once 点击事件只会触发一次</div>
+		<input @:keyup.enter='submit' placeholder="或者@:keyup.13='submit' 按键盘时触发,其它键类似, 还可以通过全局 config.keyCodes 对象自定义按键修饰符别名">
+	</div>
+	<div>
+		<p>button 组件 可复用的Vue实例,每个组件都会各自独立维护他的数据,因为每用一次组件,就会有一个它的新<b>实例</b>被创建---
+		<strong>data 必须是一个函数,因此每个实例可以维护一份被返回对象的独立的拷贝</strong>
+		</p>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		<p>为了能在模板中使用,组件必须先注册以便Vue能识别  有两种注册类型:全局注册和局部注册. Vue.component 全局注册 <code>Vue.component('my-component-name',{....})</code>全局注册的组件可以用在被注册之后(通过new Vue)新创建的Vue根实例,也包括其组件树中的所有子组件的模板中</p>
+		<p>如果用webpack这样的构建系统,全局注册意味着即便你已经不在使用一个组件了,它仍会被包含在最终的构建结果中,这就造成了用户下载JavaScript的无谓增加</p>
+		</p><strong>这些情况下可以通过一个普通的JavaScript对象来定义组件,如下,对于components对象中的每个属性来说,属性名就是自定义元素的名字,属性值就是这个组件的选项对象</strong></p>
+		<code>
+			var ComponentA={/*.....*/}
+			var ComponentB={/*.....*/}
+			var ComponentC={/*.....*/}
+			// 然后再components选项中定义你想要使用的组件：
+			new Vue({
+				el:"#app"
+				components:{
+					'component-a':ComponentA,
+					'component-b':ComponentB
+				}
+			})
+		</code>
+		<h3>注意 局部注册的组件在其子组件中 不可用 如果希望ComponentA在ComponentB中可用,如下</h3>
+		<code>
+			var ComponentA = {/*...*/}
+			var ComponentB ={
+			
+				components:{
+					'component-a':ComponentA
+				},
+				//.....
+			}
+		</code>
+		<p><b>通过Prop向子组件传递数据</b> prop是可以在组件上注册一些自定义特性. 当一个值传递给一个prop特性时,它就变成了那个组件实例的一个<b>属性</b>,一个组件可以拥有任意数量的prop</p>
+		<p style="color:#4994fc;">所有的prop都使得其父子prop之间形成了一个<b>单向下行绑定</b>:父级prop的更新会向下流动到子组件中,但是反过来则不行.每次父级组件发生更新时,子组件中所有的prop都会刷新为最新的值,这意味着你<b>不</b>应该在子组件内部改变prop,如果你这样做了,Vue会在浏览器的控制台中发出警告.</p>
+		
+	</div>
 </div>
-<div class="mainV4_tab2 b-c-gray">
-    <p class="company_container f16 new-c2">
-        <div class="searchItem searchItemNew" style="margin-right: 55px;"
-             onclick="vipCardHref('https://item.taobao.com/item.htm?spm=a1z38n.10677092.0.0.220c0c91xgdegF&amp;id=562335453589')"
-             tyc-event-click="" tyc-event-ch="shouye.Introduction.VIP">
-            <div class="f18 font-bold sec-c2"><span>天眼查VIP尊享卡</span></div>
-            <div class="sub-title sec-c3 f14">专为商务精英定制，用户开通天眼查VIP会员</div>
-            <div class="sub-img"><img src="https://static.tianyancha.com/wap/images/home-intro-card1206.png"
-                                      width="276px" alt="天眼查VIP尊享卡"></div>
-            <div class="intro-box left-box text-center f14">
-                <div class="intro-box-title">
-                    <div class="f20 pt15 pb4">天眼查VIP尊享卡</div>
-                    <div class="">专为商务精英定制，用于开通天眼查VIP会员</div>
-                </div>
-                <div class="sec-c3">
-                    <div class="sec-c1 pt16">什么是VIP尊享卡？</div>
-                    <div class="f12 pt4">VIP尊享卡是由天眼查团队精心打造的商务礼品</div>
-                    <div class="f12 pt4">传递的是更有价值的商业调查工具，用于开通天眼查VIP</div>
-                    <div class="sec-c1 pt15">VIP尊享卡的特色？</div>
-                    <div class="f12 pt4">形式新颖，设计感十足，精致的卡套和VIP卡</div>
-                    <div class="f12 pt4 pb8">体现出满满的商务价值，抽拉的方式更加特别</div>
-                    <img src="https://static.tianyancha.com/wap/images/intro-card-1.png" alt="天眼查VIP尊享卡">
-                    <div class="sec-c1 pt3">VIP尊享卡在什么场合使用？</div>
-                    <div class="f12 pt4 "><span class="new-champ">商务人士：</span>一眼看清别人不知道的商业信息</div>
-                    <div class="f12 pt4 "><span class="new-champ">媒体记者：</span>深入报导商业内幕</div>
-                    <div class="f12 pt4"><span class="new-champ">律师/会计师/采购：</span>更加高效完成业务调查</div>
-                    <div class="button-blue-md in-block pl60 pr60 mt15">立即购买</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="searchItem searchItemNew" style="margin-right: 55px;" onclick="vipHref()" tyc-event-click=""
-             tyc-event-ch="shouye.Introduction.VIP">
-            <div class="f18 font-bold sec-c2"><span>VIP会员</span></div>
-            <div class="sub-title sec-c3 f14">一眼看清别人不知道的商业信息</div>
-            <div class="sub-img"><img src="https://static.tianyancha.com/wap/images/home-intro-vip.png" alt="VIP会员">
-            </div>
-            <div class="intro-box middle-box f14">
-                <div class="intro-box-title">
-                    <div class="f20 pt15 pb4">VIP会员</div>
-                    <div class="">一眼看清别人不知道的商业信息</div>
-                </div>
-                <div class="sec-c3"><img src="https://static.tianyancha.com/wap/images/intro-card-2.png"
-                                         alt="天眼查VIP尊享卡">
-                    <div class="button-blue-md in-block pl60 pr60 mt15">立即购买</div>
-                </div>
-            </div>
-        </div>
-        <div class="searchItem searchItemNew" onclick="businessHref()" tyc-event-click=""
-             tyc-event-ch="shouye.Introduction.VIP">
-            <div class="f18 font-bold sec-c2"><span>企业套餐</span></div>
-            <div class="sub-title sec-c3 f14">主从账号管理，解决人员流动带来的账号管理问题</div>
-            <div class="sub-img"><img src="https://static.tianyancha.com/wap/images/home-intro-business.png" alt="企业套餐">
-            </div>
-            <div class="intro-box right-box f14">
-                <div class="intro-box-title">
-                    <div class="f20 pt15 pb4">企业套餐</div>
-                    <div class="">主从账号管理，解决人员流动带来的账号管理问题</div>
-                </div>
-                <div class="sec-c3"><img src="https://static.tianyancha.com/wap/images/intro-card-3.png" alt="企业套餐">
-                    <div class="button-blue-md in-block pl60 pr60 mt15">立即购买</div>
-                </div>
-            </div>
-        </div>
-    </p>
-</div>
-
-
-<div class="experience_content">
-    <div class="inner clear">
-        <div class="experience_box">
-            <div class="experience_img">
-                <img src="http://resource.anyinfo.cn//imgs/experience1.jpg">
-            </div>
-            <div class="experience_tit">海量数据</div>
-            <div class="experience_txt">全面、快速、准确收集企业风险<br>数据，异构数据结构化处理</div>
-            <!-- <a href="/index/mass" target="_blank"><div class="experience_now">立即体验></div></a> -->
-        </div>
-        <div class="experience_box">
-            <div class="experience_img">
-                <img src="http://resource.anyinfo.cn//imgs/experience2.jpg">
-            </div>
-            <div class="experience_tit">深度挖掘</div>
-            <div class="experience_txt">工商、关联、涉诉等<br>揭示产业链多重风险</div>
-            <!--<a href="/index/depth" target="_blank"><div class="experience_now">立即体验></div></a>-->
-        </div>
-        <div class="experience_box">
-            <div class="experience_img">
-                <img src="http://resource.anyinfo.cn//imgs/experience3.jpg">
-            </div>
-            <div class="experience_tit">即时查询</div>
-            <div class="experience_txt">千万家企业信息<br>随时随地搜索查询</div>
-            <!--<a data-toggle="modal" data-target="#timely_query_model"><div class="experience_now">立即体验></div></a>-->
-        </div>
-        <div class="experience_box">
-            <div class="experience_img">
-                <img src="http://resource.anyinfo.cn//imgs/experience4.jpg">
-            </div>
-            <div class="experience_tit">实时监控</div>
-            <div class="experience_txt">动态监测企业异动情况<br>邮件、微信主动推送预警消息</div>
-            <!--<a href="/index/real" target="_blank"><div class="experience_now">立即体验></div></a>-->
-        </div>
-    </div>
-</div>
-
-
 
 <style lang="scss" scope>
     /*@import 'css/common';*/
@@ -166,6 +116,7 @@
     // new Vue({
     //     el:"#app2",
     // })
+	
 </script>
 
 </body>

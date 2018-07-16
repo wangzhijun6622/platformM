@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	   <style>
+  body,div{
+    margin:0;
+    padding:0;
+  }
+  div{
+    width:100px;
+    height:100px;
+   
+  }
+  .item1{
+    float:left;
+	 background-color:red;
+  }
+   .item2{
+   
+    background-color:pink;
+  }
+  :root{
+	  --head-color:red;
+	  --margin-l-min:20px;
+	}
+	.box{
+	  /* --head-color:blue; */
+	}
+	.box p{
+	  color:var(--head-color);
+	  margin:var(--margin-l-min)
+	}
+</style>
+<div class="item1">item1</div>
+<div class="item2">item2</div>
+<div class="box">
+	明天 
+	<p>今天</p>
+</div>
+ </body>
+</html>
